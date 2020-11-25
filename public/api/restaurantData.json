@@ -1,0 +1,97 @@
+[
+    { "id":1,
+      "restaurantName":"Pizza Pepper",
+      "address":"Bristol Road, Selly Oak, Birmingham B29 6NA",
+      "lat":52.439992,
+      "long": -1.9389,
+      "imgUrl":"api/img/pizpep1.jpg",
+      "ratings":[
+         {
+            "stars":4,
+            "comment":"Great! But not many  options."
+         },
+         {
+            "stars":5,
+            "comment":"My favorite restaurant!"
+         }
+      ]
+   },
+   {   
+      "id":2,
+      "restaurantName":"Handmade Burger",
+      "address":"Martins Square, Birmingham B5 4BW",
+      "lat":52.477322,
+      "long": -1.893046,
+      "imgUrl":"api/img/handMade1.jpg",
+     
+      "ratings":[
+         {
+            "stars":5,
+            "comment":"Burgers taste is awosome!"
+         },
+         {
+            "stars":5,
+            "comment":"Amazing"
+         }
+      ]
+   },
+
+   {   
+    "id":3,
+   "restaurantName":"KFC",
+   "address":"Kingsbury Road, Birmingham, B24 9PY",
+   "lat":52.518735,
+   "long":-1.805346,
+   "imgUrl":"api/img/kfc1.jpg",
+   "ratings":[
+      {
+         "stars":2,
+         "comment":"I recieved my order but was not warm!"
+      },
+      {
+         "stars":5,
+         "comment":"Amazing"
+      }
+   ]
+},
+{   
+    "id":4,
+   "restaurantName":"Nando's",
+   "address":"Fiveways Leisure Complex, Broad St Unit 5a, Birmingham B15 1DA",
+   "lat":52.474408,
+   "long":-1.914665,
+   "imgUrl":"api/img/nandos2.jpg",
+   "ratings":[
+      {
+         "stars":5,
+         "comment":"Great place for the family to eat & the location is fab"
+      },
+      {
+         "stars":4,
+         "comment":"I personally love a Nandos."
+      }
+   ]
+},
+{   
+    "id":5,
+   "restaurantName":"Fridays",
+   "address":"Hagley Road, Birmingham B16 9NY",
+   "lat":52.471224,
+   "long": -1.940992,
+   "imgUrl":"api/img/tgi-fridays.jpg",
+  
+   "ratings":[
+      {
+         "stars":2,
+         "comment":"The food was bland and poorly cooked"
+      },
+      {
+         "stars":1,
+         "comment":"Not worth the money."
+      }
+   ]
+}
+
+
+]
+ 

@@ -1,0 +1,195 @@
+html,body{
+  height: 100%;
+  width: 100%;
+  margin: 2px;
+}
+#nav-bar{
+ background-color:rgb(56, 104, 143);
+  height: 90px; 
+}
+#nav-bar h3 {
+font-weight: 700;
+text-align: center;
+color: #e1af35;
+padding-top: 18px;
+margin: 0;
+}
+#nav-bar h3 i{
+  color:  #f7bc27;
+  padding-right: 15px;
+  
+}
+
+.filter-content{
+  float:right;
+  padding: 3px;
+  margin-top: 15px;
+}
+
+.filter-content label{
+  margin: 2px;
+  padding-top: 1px;
+}
+.filter-content input{
+margin: 0;
+  
+}
+.column-left{
+
+  background-color: #6b8be4;
+  float: left;
+  height: 765px;
+  width: 74%;
+  
+}
+.column-right{
+  background-color: rgb(184, 213, 236);
+  float: right;
+  width: 25%;
+  height: 778px;
+  position: relative;
+}
+.column-right ul{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+  overflow:hidden;
+   overflow-y:scroll
+}
+ul .row {
+ 
+  margin-right: 18px;
+  width: 100%;
+}
+
+li {
+  border: 1px solid rgb(181, 201, 235);
+  height: 110px;
+  width: 100%;
+}
+ .restaurant-wrapper #img-rapper{
+   float: left;
+   margin: 0;
+   padding: 2px;
+ }
+
+ .restaurant-wrapper #info-rapper{
+   float:right;
+   margin: 0;
+   padding: 1px;
+  
+ }
+
+ #info-rapper h5{
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    padding: 2px;
+    
+  }
+
+  .reviw-stars-row{
+    margin: 0;
+    padding: 1px;
+    
+  }
+  .restaurant-address{
+    margin: 0;
+  }
+  .total-ratings{
+    margin: 0;
+    padding: 2px;
+  }
+  .total-ratings p{
+    font-size: 12px;
+  }
+
+.restaurant-address p{
+  font-size: 13px;
+  margin: 0;
+  font-weight: 600;
+  color: #0b329c;
+}
+
+.new-restaurant{
+  height: 150px;
+  width: 150px;
+}
+
+#map{
+  height: 100%;
+  width: 765px;
+ 
+}
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: -150px;
+  width: 100%; /* Full width */
+  height: 200%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 40%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
+/* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+  width: 100%; /* Full width */
+  padding: 12px; /* Some padding */ 
+  border: 1px solid #ccc; /* Gray border */
+  border-radius: 4px; /* Rounded borders */
+  box-sizing: border-box; /* Make sure that padding and width stays in place */
+  margin-top: 6px; /* Add a top margin */
+  margin-bottom: 16px; /* Bottom margin */
+  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+}
+
+/* Style the submit button with a specific background color etc */
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* When moving the mouse over the submit button, add a darker green color */
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* Add a background color and some padding around the form */
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
