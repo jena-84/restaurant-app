@@ -6,10 +6,8 @@ export default function StarRating(props) {
     //const [rating,setRating]= useState(0);
     //const reducer = (accumulator, currentValue) => accumulator + currentValue.stars;
     const rating = props.ave;
-  
-
      return (
-      <div class="star">
+      <div className="star">
 
          {[...Array(5)].map((star,i)=>{
           const ratingValue = i+1;

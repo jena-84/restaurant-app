@@ -131,7 +131,7 @@ const mapContainerStyle ={
                               <img 
                               src={`https://maps.googleapis.com/maps/api/streetview?size=148x110&location=${selected.geometry.location.lat},${selected.geometry.location.lng}
                                &fov=100&heading=280&pitch=-0.76
-                               &key=AIzaSyCjxuRk47EfgCJYQcF0DBkkiMEgXVstjzw`}
+                               &key={process.env.REACT_APP_API_KEY}`}
                              />
                           </div>
                           <div class="star-rating">

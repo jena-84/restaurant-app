@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import GoogleApi from './GoogleApi.js';
-import RestaurantTable from './RestaurantTable';
+//import RestaurantTable from './RestaurantTable';
 import axios from 'axios';
 import './style.css';
 import RestDetails from './RestDetails';
@@ -16,7 +16,7 @@ export default function RestaurantReview() {
    const [restaurant, setRestaurant] = useState([]);
 
     useEffect(() => {
-      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.429859,-1.964820&radius=1300&type=restaurant&key=AIzaSyCjxuRk47EfgCJYQcF0DBkkiMEgXVstjzw`)
+      axios.get(`https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=52.429859,-1.964820&radius=1300&type=restaurant&key=${AIzaSyCjxuRk47EfgCJYQcF0DBkkiMEgXVstjzw}`)
        
       .then(response=> {
        setRestaurant(response.data.results)

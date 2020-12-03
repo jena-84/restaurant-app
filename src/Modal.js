@@ -1,10 +1,10 @@
 import React from 'react';
-import Modal from 'react-modal';
+//import modal from 'react-modal';
 
 
 //Modal.setAppElement('#root');
 
- export default function Modal() {
+ export default function modal() {
     const[modalIsOpen, setModalIsOpen] = useState(true);
 
     return(
