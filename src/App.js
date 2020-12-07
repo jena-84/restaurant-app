@@ -78,6 +78,11 @@ export default function App () {
       lng: event.latLng.lng(),
       }])},[])
   
+  function addRestaurant (value) {
+    console.log("addRestaurant was called")
+    console.log(value)
+    setRestaurants([...restaurants, value])
+  }
   return (
     <section>
       <div className="row">
@@ -160,7 +165,7 @@ export default function App () {
                      >
                       <div className="new-restaurant">
                          <h4 className="new-Header">Add New Restaurant</h4>
-                         <AddRes></AddRes>
+                         <AddRes addRestaurant={addRestaurant} position={clickedMarker}></AddRes>
                       </div>
                    </InfoWindow> 
                   )}
