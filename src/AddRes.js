@@ -13,26 +13,22 @@ export default function AddRes(props){
       address:'',
       resUrl:'',
       geometry: {
-        location :{
-          lng:() => 0,
-          lat:() => 0
+      location :{
+        lng:() => 0,
+        lat:() => 0
         }
       }
    });
 
-  /*const [resName,setResName]= useUpdateData('');
-  const [phoneNum,setPhoneNum]= useUpdateData('');
-  const [address,setAddress]= useUpdateData('');
-  const [resUrl,setResUrl]= useUpdateData('');*/
-
   function handleSubmit(e,data){
 
     e.preventDefault();
-   console.log(data)
-   
+    console.log(data)
   }
   data.geometry.location.lat = () => props.position.lat;
   data.geometry.location.lng = () => props.position.lng;
+
+   
 return (
     <Modal className="form"
      size= "small"

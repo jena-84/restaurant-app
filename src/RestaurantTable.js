@@ -9,13 +9,13 @@ export default function  RestaurantTable(props) {
     //const reducer = (accumulator, currentValue) => accumulator + currentValue.stars;
      //<StarRating ave={item.ratings.reduce(reducer,0)/item.ratings.length}/>
      
-        return(
+        return(    
                    <div className="column-right"> 
                      <ul>
                       {(props.restaurants).map((item)=> 
                            props.min > props.max ? (<ModalBox ></ModalBox>)
                              : item.rating >= props.min && 
-                           item.rating <= props.max ? ( 
+                              item.rating <= props.max ? ( 
                             <div className = "row" >
                                     <li>
                                         < div className="restaurant-wrapper" >
