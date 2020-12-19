@@ -14,13 +14,10 @@ export default function ResForm(props){
     const [resUrl,setResUrl] = useState('');
     const [number,setNumber] = useState('');
 
- const submitForm = (e) => {
+    const submitForm = (e) => {
     e.preventDefault();
-    console.log(e.target)
-    //console.dir(e.target[0].value)
-    
     const newResto = {
-      place_id: "432gregre",
+      place_id: Date.now(),
       name: name,
       vicinity: vicinity,
       number: number,
@@ -30,13 +27,13 @@ export default function ResForm(props){
           lng: props.lng
         }
       }
-     
     }
     console.log(newResto)
-    props.addNewResto({newResto});
+    props.addNewResto(newResto);
     //setRestaurants([...restaurants, newResto]);
     handleClose(e);
     }
+    
      
   return(
     <div>
@@ -70,16 +67,6 @@ export default function ResForm(props){
               value={vicinity}
               name={vicinity}
               onChange={(e)=>setVicinity(e.target.value)} />
-            </Form.Group>
-
-            <Form.Group controlId="formBasicUrl">
-              <Form.Label>Restaurant Url</Form.Label>
-              <Form.Control
-              type="resUrl"
-              placeholder="Restaurant Url"
-              value={resUrl}
-              name={resUrl}
-              onChange={(e)=>setResUrl(e.target.value)} />
             </Form.Group>
 
             <Form.Group controlId="formBasicNumber">

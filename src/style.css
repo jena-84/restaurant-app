@@ -88,7 +88,17 @@ li {
     padding: 2px;
     
   }
-
+   
+  #info-rapper button{
+    float:right;
+    padding-left: 8px;
+    margin-right: 10px;
+    background-color:rgba(255, 255, 255, 0.548);
+    border: 1px solid gray;
+    border-radius: 3em;
+    
+  }
+  
   .reviw-stars-row{
     margin: 0;
     padding: 1px;
@@ -109,7 +119,7 @@ li {
   font-size: 13px;
   margin: 0;
   font-weight: 600;
-  color: #0b329c;
+  color: #929292;
 }
 
 .new-restaurant{
@@ -192,4 +202,36 @@ input[type=submit]:hover {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
+}
+
+.info-window{
+  width: 180px;
+  height: 220px;
+  
+}
+
+ .info-window .info{
+  width: 100%;
+  
+}
+.info-header{
+  font-weight: 600;
+  color: #436de0;
+  
+}
+
+.info-img{
+  padding-left: 35px;
+  width: 100px;
+}
+.star-rating{
+  margin: 5px;
+  padding-left: 45px;
+}
+.info-vicinity{
+  margin: 5px;
+  font-weight: 500;
+}
+.info-header{
+  padding-left: 38px;
 }

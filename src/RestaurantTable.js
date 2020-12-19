@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import StarRating from './StarRating.js';
 import ModalBox from './ModalBox.js';
 //import {Link} from 'react-router-dom';
-//import RestDetails from './RestDetails.js';
+import RestDetails from './RestDetails.js';
 
 
 export default function  RestaurantTable(props) {
     //const reducer = (accumulator, currentValue) => accumulator + currentValue.stars;
      //<StarRating ave={item.ratings.reduce(reducer,0)/item.ratings.length}/>
+    
      
         return(    
                    <div className="column-right"> 
@@ -26,6 +27,7 @@ export default function  RestaurantTable(props) {
                                              <div className=" col-sm-8" id="info-rapper">
                                                <h5  key={item.place_id}>{item.name}
                                                </h5>
+                                               <button >See more</button>
                                                         <div className="reviw-stars-row">
                                                               <div className="reviews">
                                                                  <StarRating ave={item.rating}/>
