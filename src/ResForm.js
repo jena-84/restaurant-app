@@ -11,8 +11,9 @@ export default function ResForm(props){
   
     const [name,setName] = useState('');
     const [vicinity,setVicinity] = useState('');
-    const [resUrl,setResUrl] = useState('');
     const [number,setNumber] = useState('');
+    const [rating,setRating] = useState('');
+
 
     const submitForm = (e) => {
     e.preventDefault();
@@ -21,16 +22,16 @@ export default function ResForm(props){
       name: name,
       vicinity: vicinity,
       number: number,
+      rating: rating,
       geometry:{
         location:{
-          lat: props.lat,
-          lng: props.lng
+          lat: ()=>props.lat,
+          lng: ()=>props.lng
         }
       }
     }
     console.log(newResto)
     props.addNewResto(newResto);
-    //setRestaurants([...restaurants, newResto]);
     handleClose(e);
     }
     
@@ -53,7 +54,7 @@ export default function ResForm(props){
               <Form.Label>Restaurant Name</Form.Label>
               <Form.Control
               type="resName"
-              placeholder="Restaurant Name" 
+              placeholder="Handmade burger" 
               value={name}
               name={name}
               onChange={(e)=>setName(e.target.value)}/>
@@ -63,7 +64,7 @@ export default function ResForm(props){
               <Form.Label>Address</Form.Label>
               <Form.Control 
               type="address" 
-              placeholder="Address"
+              placeholder="Bristol Rd, Selly Oak B30"
               value={vicinity}
               name={vicinity}
               onChange={(e)=>setVicinity(e.target.value)} />
@@ -73,11 +74,22 @@ export default function ResForm(props){
               <Form.Label>Phone Number</Form.Label>
               <Form.Control 
               type="phoneNumber" 
-              placeholder="Phone Number" 
+              placeholder="0782 453 213" 
               value={number}
               name={number}
               onChange={(e)=>setNumber(e.target.value)}/>
             </Form.Group>
+
+            <Form.Group controlId="formBasicRating">
+              <Form.Label>Rating</Form.Label>
+              <Form.Control
+              type="resRating"
+              placeholder="Add rating number 1,2...5" 
+              value={rating}
+              name={rating}
+              onChange={(e)=>setRating(e.target.value)}/>
+             </Form.Group>
+
             <Button variant="primary" type="submit" block>Submit</Button>
          </Form>
        </Modal.Body>

@@ -19,22 +19,21 @@ import StarRaing from './StarRating';
 export default function App () {
   const [map, setMap] = React.useState(null);
    //Add marker when Click on the map 
-  //const [markers,setMarkers]= React.useState([]);
   const [currentLocation, setCurrentLocation]= React.useState(null);
-  //const [clickedMarker,setClickedMarker]= React.useState(null);
   const [clickedRest, setClickedRest] = React.useState(null);
-
+  // Adding restaurants variables
   const [googleRestaurants, setGoogleRestaurants] = React.useState([]);
   const [localRestaurants, setLocalRestaurants] = React.useState([]);
   const [restaurants, setRestaurants] = React.useState([]);
 
   const addNewResto = (newResto)=> {
 
-    console.log("This is to be added=> "+ newResto);
-
-    setLocalRestaurants([...restaurants, newResto]);
-    setRestaurants([...googleRestaurants, ...localRestaurants, newResto]);
+    console.log(newResto);
+    setLocalRestaurants([...localRestaurants,...restaurants, newResto]);
+    setRestaurants([...restaurants,...googleRestaurants, ...localRestaurants, newResto]);
+    console.log(restaurants)
     setCurrentLocation(null)
+    console.log(restaurants)
   }
 
   //Loading Map
@@ -54,6 +53,7 @@ export default function App () {
 
     function callback(results, status) {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results)
         setRestaurants(results)
       }
     }
@@ -139,8 +139,10 @@ export default function App () {
             <Marker
               key={restaurant.place_id}
               position={{
-                lat: (restaurant.geometry.location.lat instanceof Function) ? restaurant.geometry.location.lat() : restaurant.geometry.location.lat,
-                lng: (restaurant.geometry.location.lng instanceof Function) ? restaurant.geometry.location.lng() : restaurant.geometry.location.lng,
+                 lat: (restaurant.geometry.location.lat instanceof Function) ? restaurant.geometry.location.lat() : restaurant.geometry.location.lat,
+                  //lat: ()=> restaurant.geometry.location.lat,
+                 lng: (restaurant.geometry.location.lng instanceof Function) ? restaurant.geometry.location.lng() : restaurant.geometry.location.lng,
+                  //lng: ()=> restaurant.geometry.location.lng,
               }} 
               icon={{
                 url: `./icon-restaurant.png`,
@@ -196,7 +198,9 @@ export default function App () {
        </LoadScript>
       </div>
     </div>
-    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants}/>
+    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants} 
+       addNewResto={addNewResto}
+    />
     </section>
   )  
 }
