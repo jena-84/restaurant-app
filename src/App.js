@@ -4,12 +4,15 @@ import './style.css';
 import {GoogleMap, LoadScript, Marker,InfoWindow } from '@react-google-maps/api';
 import ResForm from './ResForm.js'
 import StarRaing from './StarRating';
-//import MoreDetails from './MoreDetails.js';
+import {Card} from "react-bootstrap";
+import Reviews from './Reviews.js';
 
+
+//import RestDetails from './RestDetails';
     const libraries = ["places"];
     const mapContainerStyle ={
-      height: "125vh",
-      width: "74vw",
+      height: "84vh",
+      width: "63vw",
     };
     const center= {
       lat: 52.429859,
@@ -17,24 +20,66 @@ import StarRaing from './StarRating';
     };
 
 export default function App () {
+
   const [map, setMap] = React.useState(null);
    //Add marker when Click on the map 
   const [currentLocation, setCurrentLocation]= React.useState(null);
   const [clickedRest, setClickedRest] = React.useState(null);
-  // Adding restaurants variables
+
+
+  // Display Google reviews,new reviews,total reviews variables
+  const [googleReviews, setGoogleReviews] = React.useState([]);
+  const [localReviews, setLocalReviews] = React.useState([]);
+
+  const reviews = React.useRef([])
+  React.useEffect(()=>{
+    console.log(googleReviews)
+    reviews.current = [...googleReviews,...localReviews];
+  })
+
+  const addNewReview = (newRev) =>{
+     setLocalReviews([...localReviews,newRev])
+     reviews.current =[...googleReviews,...localReviews,newRev]
+  }
+
+  // Adding restaurants(ByGoogle,NewRes, Total on map) variables
   const [googleRestaurants, setGoogleRestaurants] = React.useState([]);
   const [localRestaurants, setLocalRestaurants] = React.useState([]);
-  const [restaurants, setRestaurants] = React.useState([]);
+  
+  const restaurants = React.useRef([])
+  React.useEffect(()=>{
+    //console.log(localRestaurants)
+    //console.log(googleRestaurants)
+  restaurants.current = [...googleRestaurants,...localRestaurants];
+  })
 
+  
   const addNewResto = (newResto)=> {
-
-    console.log(newResto);
-    setLocalRestaurants([...localRestaurants,...restaurants, newResto]);
-    setRestaurants([...restaurants,...googleRestaurants, ...localRestaurants, newResto]);
-    console.log(restaurants)
-    setCurrentLocation(null)
-    console.log(restaurants)
+    //console.log(newResto);
+    setLocalRestaurants([...localRestaurants, newResto]);
+    restaurants.current= [...googleRestaurants,...localRestaurants,newResto];
+    //console.log(restaurants)
+   setCurrentLocation(null)
+   
   }
+
+  // Get Restaurants reviews
+  function getGoodleReviews(place_id) {
+    console.log("map from getGoodleReviews",map)
+    const request = {
+      placeId: place_id,
+      fields: ["review"],
+    };
+    map.getDetails(request, callback);
+
+    function callback(results, status) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+       // console.log(status,results.reviews)
+        setGoogleReviews(results.reviews)
+      }
+    }
+  };
+
 
   //Loading Map
   const onLoad = React.useCallback(function callback(map) {
@@ -49,12 +94,12 @@ export default function App () {
         type: ['restaurant'],
       };
       service.nearbySearch(request, callback);
+
     });
 
     function callback(results, status) {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results)
-        setRestaurants(results)
+        setGoogleRestaurants(results)
       }
     }
      setMap(map)
@@ -83,12 +128,13 @@ export default function App () {
   },[])
 
   return (
-    <section>
+   
+    <div className='container-xl'>
       <div className="row">
         <div className="col-md-12" id="nav-bar">
           <h3><i className="fas fa-utensils"></i>Find Your Favourite Food</h3>
             <div className="filter-content">
-              <label>Minimum rate: {min.minValue}</label>
+              <label>Low rate: {min.minValue}</label>
               <input 
                 onChange={handleMinChange }
                 name="min"
@@ -99,7 +145,7 @@ export default function App () {
                 step="0.1"
                 value={min.minValue}
               />
-              <label>Maximum rate: {max.maxValue}</label>
+              <label>High rate: {max.maxValue}</label>
               <input 
                 onChange={handleMaxChange}
                 name="max"
@@ -113,8 +159,10 @@ export default function App () {
           </div>
         </div>
       </div>
-    <div className="column-left">
+      <div className="row">
+    <div className="column-left col-md-9">
      <div id="map">
+  
       <LoadScript
         googleMapsApiKey={process.env.REACT_APP_API_KEY}
         libraries={libraries}
@@ -122,10 +170,10 @@ export default function App () {
       <GoogleMap
         center={center}
         mapContainerStyle={mapContainerStyle}
-        zoom={15}
+        zoom={14}
         onLoad={onLoad}
         onUnmount={onUnmount}
-        onRightClick={onMapClick}
+        onClick={onMapClick}
         id="restaurant-id"
       >
           {/* Center Marker */}
@@ -135,14 +183,14 @@ export default function App () {
           />
                       
             {/* Add Restaurants Markers */}
-          {restaurants.map(restaurant => 
+          {restaurants.current.map(restaurant => 
             <Marker
               key={restaurant.place_id}
               position={{
                  lat: (restaurant.geometry.location.lat instanceof Function) ? restaurant.geometry.location.lat() : restaurant.geometry.location.lat,
-                  //lat: ()=> restaurant.geometry.location.lat,
+                
                  lng: (restaurant.geometry.location.lng instanceof Function) ? restaurant.geometry.location.lng() : restaurant.geometry.location.lng,
-                  //lng: ()=> restaurant.geometry.location.lng,
+               
               }} 
               icon={{
                 url: `./icon-restaurant.png`,
@@ -150,10 +198,11 @@ export default function App () {
                 scaledSize: new window.google.maps.Size(33,33),
                 anchor: new window.google.maps.Point(10,10),  
               }} 
-              onClick={()=>{setClickedRest(restaurant)}}
+              onClick={()=>{setClickedRest(restaurant)
+              getGoodleReviews(restaurant.place_id)}}
             />
           )} 
-                        
+            {/* Add Info Window to show restaurants details*/}          
           {clickedRest &&(
             <InfoWindow className="info-window"
               position={{
@@ -162,35 +211,43 @@ export default function App () {
                 }}
               onCloseClick={()=>{setClickedRest(null)}}
               >
-              <div class="info" >
-                <h5 class="info-header">{clickedRest.name}</h5>
-                <div class="info-img">
-                  <img
-                    style={{ maxWidth: '100%', width: '100%', height: 'auto' }}
-                    src={`https://maps.googleapis.com/maps/api/streetview?size=400x400&location=${clickedRest.geometry.location.lat()},${clickedRest.geometry.location.lng()}&fov=80&heading=70&pitch=0&key=${process.env.REACT_APP_API_KEY}`}
-                  />
-                </div>
-                <div class="star-rating">
-                  <StarRaing  ave={clickedRest.rating}/>
-                </div>
-                <div class ="info-vicinity">
-                  <p>{clickedRest.vicinity}</p>
-                </div>
+              <div className="info" >
+                <Card style={{ width: '20rem' }}>
+                <img alt='googleImg' style={{ maxWidth: '90%', width: '70%', height: 'auto',float:'left'}}
+                 src={`https://maps.googleapis.com/maps/api/streetview?size=300x300&location=${clickedRest.geometry.location.lat()},${clickedRest.geometry.location.lng()}&fov=80&heading=70&pitch=0&key=${process.env.REACT_APP_API_KEY}`}
+                />
+                 <Card.Body>
+                 <Card.Title>{clickedRest.name}</Card.Title>
+                 <Card.Text>
+                 <h4 style={{margin:'0', padding:'0',color:'blue'}}>Location:</h4>
+                 <p style={{fontSize:'12px',fontWeight:'500',padding:'2px'}}>{clickedRest.vicinity}</p>
+
+                 <h4 style={{padding:'0', margin:'0',color:'blue'}}>Rating: </h4>
+                 <StarRaing  ave={clickedRest.rating}/>  
+                
+                 {/* Must add google review if restaurant is from Google or add new revirew if restaurant is new added */}
+                 <h5 style={{margin:'0', padding:'0', color:'blue'}}>Reviews: </h5>
+                 <p>{clickedRest.reviews}</p>
+                 <Reviews reviews={reviews.current}  getGoodleReviews={ getGoodleReviews}></Reviews>
+                </Card.Text>
+                </Card.Body>
+                </Card>
               </div>
             </InfoWindow>
-          )}
-                 
+          )}   
           {currentLocation && (
             <InfoWindow 
               position={{
                 lat: currentLocation.lat,
                 lng: currentLocation.lng,
-              }}
+                      }}
               onCloseClick={()=>{setCurrentLocation(null)}}
-            >
+             >
               <div className="new-restaurant">
-                <h4 className="new-Header">Add New Restaurant</h4>
+                <h4>Add New Restaurant</h4>
+                <div className='header'>
                 <ResForm lat={currentLocation.lat} lng={currentLocation.lng} addNewResto={addNewResto}></ResForm>
+                </div>
               </div>    
             </InfoWindow> 
           )}
@@ -198,9 +255,8 @@ export default function App () {
        </LoadScript>
       </div>
     </div>
-    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants} 
-       addNewResto={addNewResto}
-    />
-    </section>
+    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants.current} addNewResto={addNewResto}   />
+     </div>
+    </div>
   )  
 }

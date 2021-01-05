@@ -1,26 +1,31 @@
-import React, {useState} from 'react';
+import React,{useState} from 'react';
 import Modal from 'react-modal';
+
+
 
 
 Modal.setAppElement('#root');
 function ModalBox() {
 
-    const [modalIsOpen, setModalIsOpen] = useState(false);
-   
+    const [isOpen, setIsOpen] = useState(true);
+
+    function toggleModal(){ 
+      setIsOpen(!isOpen);
+      }
     return(
+      <div>
       <Modal 
-            isOpen={!modalIsOpen}
-            onRequestClose={() => setModalIsOpen(false)} 
-           
+            isOpen={isOpen}
+            onRequestClose={toggleModal} 
+            closeTimeoutMS={500}
             style={{
             overlay: {
-            position: 'fixed',
-            top: 160,
-            left:560,
-            right: 560,
-            bottom: 160,
+            top: 240,
+            left:550,
+            right:550,
+            bottom: 260,
             padding:0,
-            margin:0,
+            margin: 0,
            },
            content: {
                 position: 'absolute',
@@ -39,13 +44,12 @@ function ModalBox() {
 
               }    
             }}>
-             <div>
-              <h4>Minimum rate must be less</h4>
-             <div>
-              <button onClick={()=> setModalIsOpen(false) }>Close</button>
-            </div>
+             
+            <div className='modal-inside'>
+              <h4>** Low rate must be less than high rate**</h4>
             </div>
        </Modal>
+       </div>
     );
-};
+ };
 export default ModalBox;
