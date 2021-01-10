@@ -46,7 +46,7 @@ export default function ResForm(props){
       </div>
        <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add new restaurant</Modal.Title>
+          <Modal.Title>Add a new restaurant</Modal.Title>
         </Modal.Header>
         <Modal.Body>
          <Form onSubmit={submitForm}>
@@ -80,7 +80,6 @@ export default function ResForm(props){
               value={rating}
               name={rating}
               onChange={(e)=>setRating(e.target.value)}>
-               <option>0</option>
                <option>1</option>
                <option>2</option>
                <option>3</option>

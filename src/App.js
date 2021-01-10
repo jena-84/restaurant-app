@@ -5,10 +5,8 @@ import {GoogleMap, LoadScript, Marker,InfoWindow } from '@react-google-maps/api'
 import ResForm from './ResForm.js'
 import StarRaing from './StarRating';
 import {Card} from "react-bootstrap";
-import Reviews from './Reviews.js';
 
 
-//import RestDetails from './RestDetails';
     const libraries = ["places"];
     const mapContainerStyle ={
       height: "84vh",
@@ -33,13 +31,14 @@ export default function App () {
 
   const reviews = React.useRef([])
   React.useEffect(()=>{
-    console.log(googleReviews)
+    //console.log(googleReviews)
     reviews.current = [...googleReviews,...localReviews];
   })
 
   const addNewReview = (newRev) =>{
      setLocalReviews([...localReviews,newRev])
      reviews.current =[...googleReviews,...localReviews,newRev]
+     console.log(reviews.current)
   }
 
   // Adding restaurants(ByGoogle,NewRes, Total on map) variables
@@ -64,8 +63,8 @@ export default function App () {
   }
 
   // Get Restaurants reviews
-  function getGoodleReviews(place_id) {
-    console.log("map from getGoodleReviews",map)
+  function getGoogleReviews(place_id) {
+    //console.log("map from getGoodleReviews",map)
     const request = {
       placeId: place_id,
       fields: ["review"],
@@ -75,10 +74,9 @@ export default function App () {
     function callback(results, status) {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
        // console.log(status,results.reviews)
-        setGoogleReviews(results.reviews)
+       return  setGoogleReviews(results.reviews)
       }
-    }
-  };
+    }}; 
 
 
   //Loading Map
@@ -199,7 +197,8 @@ export default function App () {
                 anchor: new window.google.maps.Point(10,10),  
               }} 
               onClick={()=>{setClickedRest(restaurant)
-              getGoodleReviews(restaurant.place_id)}}
+                getGoogleReviews(restaurant.place_id)
+            }}
             />
           )} 
             {/* Add Info Window to show restaurants details*/}          
@@ -219,16 +218,13 @@ export default function App () {
                  <Card.Body>
                  <Card.Title>{clickedRest.name}</Card.Title>
                  <Card.Text>
-                 <h4 style={{margin:'0', padding:'0',color:'blue'}}>Location:</h4>
+                 <h4 style={{margin:'0', padding:'0',color:'blue'}}>Location</h4>
                  <p style={{fontSize:'12px',fontWeight:'500',padding:'2px'}}>{clickedRest.vicinity}</p>
 
-                 <h4 style={{padding:'0', margin:'0',color:'blue'}}>Rating: </h4>
-                 <StarRaing  ave={clickedRest.rating}/>  
-                
-                 {/* Must add google review if restaurant is from Google or add new revirew if restaurant is new added */}
-                 <h5 style={{margin:'0', padding:'0', color:'blue'}}>Reviews: </h5>
-                 <p>{clickedRest.reviews}</p>
-                 <Reviews reviews={reviews.current}  getGoodleReviews={ getGoodleReviews}></Reviews>
+                 <h4 style={{padding:'0', margin:'0',color:'blue'}}>Rating </h4>
+                 <StarRaing  ave={clickedRest.rating}/> 
+                 {/*<RestDetails  reviews={reviews.current}  getGoogleReviews={getGoogleReviews} addNewReview={addNewReview}  restaurants={restaurants.current} ></RestDetails>*/}
+               
                 </Card.Text>
                 </Card.Body>
                 </Card>
@@ -255,7 +251,9 @@ export default function App () {
        </LoadScript>
       </div>
     </div>
-    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants.current} addNewResto={addNewResto}   />
+    <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants.current} addNewResto={addNewResto}
+       reviews={reviews.current}  addNewReview={addNewReview} />
+    
      </div>
     </div>
   )  

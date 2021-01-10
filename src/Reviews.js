@@ -19,7 +19,7 @@ export default function Reviews(props){
         </Modal.Header>
         <Modal.Body>
          {props.reviews.map(review =>{ 
-            return <h3>{review.text}</h3>
+            return <p>{review.text}</p>
              })}
         </Modal.Body>        
          </Modal>
