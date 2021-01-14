@@ -26,7 +26,7 @@ export default function App () {
 
 
   // Display Google reviews,new reviews,total reviews variables
-  const [googleReviews, setGoogleReviews] = React.useState([]);
+  /*const [googleReviews, setGoogleReviews] = React.useState([]);
   const [localReviews, setLocalReviews] = React.useState([]);
 
   const reviews = React.useRef([])
@@ -39,7 +39,8 @@ export default function App () {
      setLocalReviews([...localReviews,newRev])
      reviews.current =[...googleReviews,...localReviews,newRev]
      console.log(reviews.current)
-  }
+  }*/
+
 
   // Adding restaurants(ByGoogle,NewRes, Total on map) variables
   const [googleRestaurants, setGoogleRestaurants] = React.useState([]);
@@ -59,11 +60,10 @@ export default function App () {
     restaurants.current= [...googleRestaurants,...localRestaurants,newResto];
     //console.log(restaurants)
    setCurrentLocation(null)
-   
   }
 
   // Get Restaurants reviews
-  function getGoogleReviews(place_id) {
+  /*function getGoogleReviews(place_id) {
     //console.log("map from getGoodleReviews",map)
     const request = {
       placeId: place_id,
@@ -74,10 +74,9 @@ export default function App () {
     function callback(results, status) {
       if (status === window.google.maps.places.PlacesServiceStatus.OK) {
        // console.log(status,results.reviews)
-       return  setGoogleReviews(results.reviews)
+         setGoogleReviews(results.reviews)
       }
-    }}; 
-
+    }}; */
 
   //Loading Map
   const onLoad = React.useCallback(function callback(map) {
@@ -92,7 +91,7 @@ export default function App () {
         type: ['restaurant'],
       };
       service.nearbySearch(request, callback);
-
+      
     });
 
     function callback(results, status) {
@@ -197,7 +196,7 @@ export default function App () {
                 anchor: new window.google.maps.Point(10,10),  
               }} 
               onClick={()=>{setClickedRest(restaurant)
-                getGoogleReviews(restaurant.place_id)
+                 //getGoogleReviews(restaurant.place_id)
             }}
             />
           )} 
@@ -252,7 +251,7 @@ export default function App () {
       </div>
     </div>
     <RestaurantTable max={max.maxValue} min={min.minValue} restaurants={restaurants.current} addNewResto={addNewResto}
-       reviews={reviews.current}  addNewReview={addNewReview} />
+       map={map} />
     
      </div>
     </div>

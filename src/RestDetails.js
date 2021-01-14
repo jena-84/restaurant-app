@@ -7,6 +7,51 @@ import ReviewForm from './ReviewForm.js';
 
 export default function RestDetails(props){
 
+  /*const service = new window.google.maps.places.PlacesService(props.map);
+  const request = {
+    placeId: props.restaurants.place_id,
+    fields:["review"],
+  };
+  console.log(request)
+ 
+  service.getDetails(request, (place, status) => {
+    
+    if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+      console.log(place, status)
+       setGoogleReviews(place.reviews)
+    }
+  });*/
+    //console.log("map from getGoodleReviews",map)
+
+    const request = {
+      placeId: props.restaurants.place_id,
+      fields: ["review"],
+    };
+  
+    props.map.getDetails(request, callback);
+
+    function callback(results, status) {
+      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
+        console.log(results.reviews)
+         setGoogleReviews(results.reviews)
+      }
+    };
+
+  const [googleReviews, setGoogleReviews] = React.useState([]);
+  const [localReviews, setLocalReviews] = React.useState([]);
+
+  const reviews = React.useRef([])
+  React.useEffect(()=>{
+    //console.log(googleReviews)
+    reviews.current = [...googleReviews,...localReviews];
+  })
+
+  const addNewReview = (newRev) =>{
+     setLocalReviews([...localReviews,newRev])
+     reviews.current =[...googleReviews,...localReviews, newRev]
+     //console.log(reviews.current)
+  }
+ 
   const info= props.restaurants;
 
   const [show, setShow] = React.useState(false);
@@ -40,19 +85,19 @@ export default function RestDetails(props){
            <Row className='field'>
            <h3>Most helpful reviews</h3>
             <div className='review' >
-                  {props.reviews.map(review =>{ 
+                  {reviews.current.map(review =>{ 
                          return <div>
                                   <p className='single-review'>{review.text}</p>
                                   <StarRating ave={review.rating}></StarRating>   
                                </div>
-                     })}
-                     
+                             })} 
+               
              </div>
            </Row>
            </Container>
           </Modal.Body>
           <Modal.Footer>
-          <ReviewForm addNewReview={props.addNewReview}></ReviewForm>
+            <ReviewForm addNewReview={addNewReview}></ReviewForm>
           <Button variant="secondary" onClick={handleClose}>Close</Button>
           </Modal.Footer>
          </Modal>

@@ -80,6 +80,7 @@ export default function ResForm(props){
               value={rating}
               name={rating}
               onChange={(e)=>setRating(e.target.value)}>
+               <option>Choose Number</option>
                <option>1</option>
                <option>2</option>
                <option>3</option>

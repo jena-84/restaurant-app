@@ -44,59 +44,7 @@ export default function  RestaurantTable(props) {
                                              </div>
                                              <div className=" col-sm-8" id="info-rapper">
                                                 <div id='info-name'><h5 key={item.place_id}>{item.name}</h5></div>
-                                             <RestDetails restaurants={item} reviews={props.reviews} addNewReview={props.addNewReview}></RestDetails>
-                                                 
-  {/* <div className="d-flex align-items-center justify-content-center"
-         style={{height: "2vh", float:'right'}}>
-       <Button variant="primary" size="sm" onClick={handleShow}>More Info</Button>
-       </div>
-       <Modal show={show} onHide={handleClose}>
-       <Modal.Header closeButton >
-        <Modal.Title id="contained-modal-title-vcenter">{item.name}</Modal.Title> 
-       </Modal.Header>
-       <Modal.Body>
-        <Container>
-           <Row>
-             <Col md={6}>
-             {/*<Reviews reviews={reviews.current}  getGoogleReviews={getGoogleReviews}></Reviews>
-               <h3>Address:</h3>
-               <p>{item.vicinity}</p>
-               <h3>Total Rating:</h3>
-               <StarRating ave={item.rating}></StarRating>
-
-               <div style={{ width: '200px', height:'200px', overflow:'scroll'}}>
-                 {(props.reviews).map(review =>{return <p>{review.text}</p>})}
-                   
-                 <div className='new-review' >
-                    <h5>Your review</h5>
-                    <p>{displayReviews.addRev}</p>
-                 </div>
-               </div>
-              </Col>  
-              <Col md={6}>
-               <img alt='googleImg' src={`https://maps.googleapis.com/maps/api/streetview?size=200x200&location=${item.geometry.location.lat()},${item.geometry.location.lng()}&fov=80&heading=70&pitch=0&key=${process.env.REACT_APP_API_KEY}`}></img>
-              </Col> 
-             </Row>
-           <Row>
-            <Form onSubmit={submitRev} style={{padding:'15px', width:'300px'}}>
-             <Form.Group >
-              <Form.Label>Add your review!</Form.Label>
-              <Form.Control size="lg"
-              type="rev"
-              placeholder="Tell us about your experience" 
-              value={addRev}
-              name={addRev}
-              onChange={(e)=>setAddRev(e.target.value)}/>
-             </Form.Group>
-             <Button variant="primary" type="submit" block>Add Review</Button>
-            </Form>
-           </Row>
-           </Container>
-          </Modal.Body>
-          <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>Close</Button>
-          </Modal.Footer>
-                              </Modal>*/}
+                                             <RestDetails restaurants={item} map={props.map}></RestDetails>
                                                   <div className="reviw-stars-row">
                                                          <div className="reviews">
                                                              <StarRating ave={item.rating}/>

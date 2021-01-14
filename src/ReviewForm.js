@@ -22,7 +22,7 @@ export default function ReviewForm (props){
       rating: rating,
       }
       props.addNewReview(newRev)
-      console.log(newRev)
+     // console.log(newRev)
       handleClose(e);
     }
   return(
@@ -58,6 +58,7 @@ export default function ReviewForm (props){
               value={rating}
               name={rating}
               onChange={(e)=>setRating(e.target.value)}>
+              <option>Choose Number</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
