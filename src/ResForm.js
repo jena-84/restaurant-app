@@ -12,7 +12,7 @@ export default function ResForm(props){
     const [name,setName] = useState('');
     const [vicinity,setVicinity] = useState('');
     const [rating,setRating] = useState('');
-    const [reviews,setReviews] = useState('');
+   
 
 
     const submitForm = (e) => {
@@ -23,7 +23,7 @@ export default function ResForm(props){
       name: name,
       vicinity: vicinity,
       rating: rating,
-      reviews: reviews,
+     
       geometry:{
         location:{
           lat: ()=>props.lat,
@@ -80,23 +80,13 @@ export default function ResForm(props){
               value={rating}
               name={rating}
               onChange={(e)=>setRating(e.target.value)}>
-               <option>Choose Number</option>
+               <option>Add your rating!</option>
                <option>1</option>
                <option>2</option>
                <option>3</option>
                <option>4</option>
                <option>5</option> </Form.Control>
              </Form.Group>
-
-            <Form.Group controlId="formBasicReview">
-              <Form.Label>Your review</Form.Label>
-              <Form.Control
-              type="addReview" 
-              placeholder="Share your experience to help others!" 
-              value={reviews}
-              name={reviews}
-              onChange={(e)=>setReviews(e.target.value)}/>
-            </Form.Group>
 
             <Button variant="primary" type="submit" block>Submit</Button>
          </Form>

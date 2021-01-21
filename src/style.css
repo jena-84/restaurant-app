@@ -1,320 +1,296 @@
-html,body{
-  
-  overflow: hidden; /* Hide scrollbars */
-  margin: 0;
-  padding: 5px;
-}
 
-#nav-bar{
- background-color:rgb(56, 104, 143);
-  height: 90px; 
-  margin: 0;
-}
-#nav-bar h3 {
-font-weight: 600;
-text-align: center;
-color: #e1af35;
-padding-top: 14px;
-margin: 0;
-font-size: 22px;
-}
-#nav-bar h3 i{
-  color:  #f7bc27;
-  padding-right: 15px;
-  
-}
 
-.filter-content{
-  float:right;
-  padding: 3px;
-  margin-top: 15px;
-
-}
-
-.filter-content label{
-  margin: 3px;
-  color: #f7bc27;
-  margin-top:3px;
-  font-size: 16px;
-}
- .filter-content input{
-margin: 3px;
-margin-top: 5px;
-  
-}
-.column-left{
-  background-color: #6b8be4;
-  height: 701px;
-  margin: 0;
-  padding: 0;
-  position: relative;
-}
-.column-left #map{
-  height: 100%;
-  width: 100%;
-  margin:0;
-  padding:0;
-  position:absolute;
-  right:1px;
-  object-fit: cover;
-  
-}
-.column-right{
-  background-color: rgb(184, 213, 236);
-  height: 700px;
-  position: relative;
-  margin:0;
-  padding:0;
-
-}
-.column-right ul{
-  overflow: scroll;
-  width: 100%;
-height: 75%;
-  margin:1px;
-  padding:2px;
-  list-style-type: none;
-
-  
-}
-
-ul .row {
-  margin-right: 19px;
-  width: 100%;
-  
-}
-
-li {
-  border: 1px solid rgb(181, 201, 235);
-  height: 110px;
-  width: 100%; 
-}
-
- .restaurant-wrapper #img-rapper{
-   float: left;
-   margin: 0;
-   padding: 2px;
+ .filter-content{
+   padding: 3px;
+   margin-top: 10px;
+ 
  }
-
- .restaurant-wrapper #info-rapper{
-   float:right;
-   margin: 0;
-   padding: 2px;
+ 
+ .filter-content label{
+   margin: 7px;
+   color: white;
+   margin-top:3px;
+   font-size: 16px;
  }
- #info-name {
+  .filter-content input{
+ margin: 8px;
+ margin-top: 5px;
+   padding-left: 3px;
+ }
+ .column-left{
+   background-color: #6b8be4;
+   height: 701px;
+   margin: 0;
    padding: 0;
-   margin: 0;
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow:ellipsis;
-   width: 140px
+   position: relative;
  }
- #info-name:hover{
-   overflow: visible;
+ .column-left #map{
+   height: 100%;
+   width: 100%;
+   margin:0;
+   padding:0;
+   position:absolute;
+   right:1px;
+   object-fit: cover;
+   
  }
- #info-name h5{
+ .column-right{
+   background-color: rgb(184, 213, 236);
+   height: 700px;
+   position: relative;
+   margin:0;
+   padding:0;
+ 
+ }
+ .column-right ul{
+   overflow: scroll;
+   width: 100%;
+ height: 75%;
+   margin:1px;
+   padding:2px;
+   list-style-type: none;
+ 
+   
+ }
+ /* 
+ ul .row {
+   margin-right: 19px;
+   width: 100%;
+   
+ }
+ 
+ li {
+   border: 1px solid rgb(181, 201, 235);
+   height: 110px;
+   width: 100%; 
+ } */
+ 
+  .restaurant-wrapper #img-rapper{
+    float: left;
     margin: 0;
-    font-size: 13px;
-    font-weight: 600;
     padding: 2px;
-   
-  }
-
-  #info-rapper button{
-    float:right;
-    padding-left: 8px;
-    margin-right: 8px;
-    background-color:rgba(255, 255, 255, 0.055);
-    border: 1px solid gray;
-    border-radius: 3em;
-    margin-top: 17px;
-   
-  }
-  #info-rapper button:hover{
-    border: 1px solid rgb(39, 38, 38);
-  }
-  
-  .reviw-stars-row{
-    margin: 0;
-    padding: 1px;
-    
-  }
-  .restaurant-address{
-    margin: 0;
   }
  
-
-  .total-ratings{
+  .restaurant-wrapper #info-rapper{
+    float:right;
     margin: 0;
     padding: 2px;
   }
-  .total-ratings p{
-    font-size: 12px;
+  #info-name {
+    padding: 0;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    width: 140px
   }
-
-.restaurant-address p{
-  font-size: 13px;
-  margin: 0;
-  font-weight: 600;
-  color: #929292;
-}
-
-.new-restaurant{
-  height: 100px;
-  width: 150px;
-  margin: 0;
-  padding: 5px;
-}
-.new-restaurant h4{
-  color: #6b8be4;
-}
-
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: -150px;
-  width: 100%; /* Full width */
-  height: 200%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 40%; /* Could be more or less, depending on screen size */
-}
-
-/* The Close Button */
-.close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-
-/* Style inputs with type="text", select elements and textareas */
-input[type=text], select, textarea {
-  width: 100%; /* Full width */
-  padding: 12px; /* Some padding */ 
-  border: 1px solid #ccc; /* Gray border */
-  border-radius: 4px; /* Rounded borders */
-  box-sizing: border-box; /* Make sure that padding and width stays in place */
-  margin-top: 6px; /* Add a top margin */
-  margin-bottom: 16px; /* Bottom margin */
-  resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
-}
-
-/* Style the submit button with a specific background color etc */
-input[type=submit] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 12px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* When moving the mouse over the submit button, add a darker green color */
-input[type=submit]:hover {
-  background-color: #45a049;
-}
-
-/* Add a background color and some padding around the form */
-.container {
-  border-radius: 5px;
-  background-color: #f2f2f2;
-  padding: 20px;
-}
-
-.info-window{
-  width: 180px;
-  height: 220px;
+  #info-name:hover{
+    overflow: visible;
+  }
+  #info-name h5{
+     margin: 0;
+     font-size: 13px;
+     font-weight: 600;
+     padding: 2px;
+    
+   }
+ 
+   #info-rapper button{
+     float:right;
+     padding-left: 8px;
+     margin-right: 8px;
+     background-color:rgba(255, 255, 255, 0.055);
+     border: 1px solid gray;
+     border-radius: 3em;
+     margin-top: 17px;
+    
+   }
+   #info-rapper button:hover{
+     border: 1px solid rgb(39, 38, 38);
+   }
+   
+   .reviw-stars-row{
+     margin: 0;
+     padding: 1px;
+     
+   }
+   .restaurant-address{
+     margin: 0;
+   }
   
-}
-
- .info-window .info{
-  width: 100%;
-  
-}
-.info-header{
-  font-weight: 600;
-  color: #436de0;
-  
-}
-
-.info-img{
-  padding-left: 35px;
-  width: 100px;
-}
-.star-rating{
-  margin: 5px;
-  padding-left: 45px;
-}
-.info-vicinity{
-  margin: 5px;
-  font-weight: 500;
-}
-.info-header{
-  padding-left: 38px;
-}
-
-.modal-inside{
-  margin: 10px;
-  position: relative;
-}
-.modal-inside h3{
-  margin: 15px;
-  color: #436de0;
-  text-align: center;
-  top:90px;
-}
-
-.review{
-  margin: 0;
-  padding: 10px;
+ 
+   .total-ratings{
+     margin: 0;
+     padding: 2px;
+   }
+   .total-ratings p{
+     font-size: 12px;
+   }
+ 
+ .restaurant-address p{
+   font-size: 13px;
+   margin: 0;
+   font-weight: 600;
+   color: #929292;
  }
-
-.review .single-review{
-   font-size: 15px;
+ 
+ .new-restaurant{
+   height: 100px;
+   width: 150px;
+   margin: 0;
+   padding: 5px;
+ }
+ .new-restaurant h4{
+   color: #6b8be4;
+ }
+ 
+ 
+ .modal {
+   display: none; /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: 1; /* Sit on top */
+   left: 0;
+   top: -150px;
+   width: 100%; /* Full width */
+   height: 200%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ }
+ 
+ /* Modal Content/Box */
+ .modal-content {
+   background-color: #fefefe;
+   margin: 15% auto; /* 15% from the top and centered */
+   padding: 20px;
+   border: 1px solid #888;
+   width: 40%; /* Could be more or less, depending on screen size */
+ }
+ 
+ /* The Close Button */
+ .close {
+   color: #aaa;
+   float: right;
+   font-size: 28px;
+   font-weight: bold;
+ }
+ 
+ .close:hover,
+ .close:focus {
    color: black;
-   margin: 9px;
-   padding: 4px;
-  
-}
-.review .new-review{
-  margin: 10px;
-  margin-top: 0;
-  padding: 0;
-}
-.field h3{
-  padding: 0;
-  margin: 0;
-  margin-left: 15px;
-  color:black;
-
-}
-.new-review p{
-  font-size: 17px;
-  font-weight: 300;
-  color: black;
-  padding: 0;
-  margin: 0;
-  margin-left: 5px;
-
-}
+   text-decoration: none;
+   cursor: pointer;
+ }
+ 
+ 
+ /* Style inputs with type="text", select elements and textareas */
+ input[type=text], select, textarea {
+   width: 100%; /* Full width */
+   padding: 12px; /* Some padding */ 
+   border: 1px solid #ccc; /* Gray border */
+   border-radius: 4px; /* Rounded borders */
+   box-sizing: border-box; /* Make sure that padding and width stays in place */
+   margin-top: 6px; /* Add a top margin */
+   margin-bottom: 16px; /* Bottom margin */
+   resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+ }
+ 
+ /* Style the submit button with a specific background color etc */
+ input[type=submit] {
+   background-color: #4CAF50;
+   color: white;
+   padding: 12px 20px;
+   border: none;
+   border-radius: 4px;
+   cursor: pointer;
+ }
+ 
+ /* When moving the mouse over the submit button, add a darker green color */
+ input[type=submit]:hover {
+   background-color: #45a049;
+ }
+ 
+ /* Add a background color and some padding around the form */
+ .container {
+   border-radius: 5px;
+   background-color: #f2f2f2;
+   padding: 20px;
+ }
+ 
+ .info-window{
+   width: 180px;
+   height: 220px;
+   
+ }
+ 
+  .info-window .info{
+   width: 100%;
+   
+ }
+ .info-header{
+   font-weight: 600;
+   color: #436de0;
+   
+ }
+ 
+ .info-img{
+   padding-left: 35px;
+   width: 100px;
+ }
+ .star-rating{
+   margin: 5px;
+   padding-left: 45px;
+ }
+ .info-vicinity{
+   margin: 5px;
+   font-weight: 500;
+ }
+ .info-header{
+   padding-left: 38px;
+ }
+ 
+ .modal-inside{
+   margin: 10px;
+   position: relative;
+ }
+ .modal-inside h3{
+   margin: 15px;
+   color: #436de0;
+   text-align: center;
+   top:90px;
+ }
+ 
+ .review{
+   margin: 0;
+   padding: 10px;
+  }
+ 
+ .review .single-review{
+    font-size: 15px;
+    color: black;
+    margin: 9px;
+    padding: 4px;
+   
+ }
+ .review .new-review{
+   margin: 10px;
+   margin-top: 0;
+   padding: 0;
+ }
+ .field h3{
+   padding: 0;
+   margin: 0;
+   margin-left: 15px;
+   color:black;
+ 
+ }
+ .new-review p{
+   font-size: 17px;
+   font-weight: 300;
+   color: black;
+   padding: 0;
+   margin: 0;
+   margin-left: 5px;
+ 
+ }
+ 

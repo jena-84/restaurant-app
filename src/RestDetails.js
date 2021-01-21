@@ -7,50 +7,37 @@ import ReviewForm from './ReviewForm.js';
 
 export default function RestDetails(props){
 
-  /*const service = new window.google.maps.places.PlacesService(props.map);
+   
+  
   const request = {
     placeId: props.restaurants.place_id,
-    fields:["review"],
+    fields: ["review"],
   };
-  console.log(request)
- 
-  service.getDetails(request, (place, status) => {
-    
+
+  props.map.getDetails(request, callback);
+
+  function callback(results, status) {
     if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-      console.log(place, status)
-       setGoogleReviews(place.reviews)
+      console.log(results.reviews)
+       setGoogleReviews(results.reviews)
     }
-  });*/
-    //console.log("map from getGoodleReviews",map)
+   };
 
-    const request = {
-      placeId: props.restaurants.place_id,
-      fields: ["review"],
-    };
-  
-    props.map.getDetails(request, callback);
+ const [googleReviews, setGoogleReviews] = React.useState([]);
+ const [localReviews, setLocalReviews] = React.useState([]);
 
-    function callback(results, status) {
-      if (status === window.google.maps.places.PlacesServiceStatus.OK) {
-        console.log(results.reviews)
-         setGoogleReviews(results.reviews)
-      }
-    };
+ const reviews = React.useRef([])
 
-  const [googleReviews, setGoogleReviews] = React.useState([]);
-  const [localReviews, setLocalReviews] = React.useState([]);
-
-  const reviews = React.useRef([])
-  React.useEffect(()=>{
-    //console.log(googleReviews)
-    reviews.current = [...googleReviews,...localReviews];
+   React.useEffect(()=>{
+  reviews.current = [...googleReviews,...localReviews];
   })
 
-  const addNewReview = (newRev) =>{
-     setLocalReviews([...localReviews,newRev])
-     reviews.current =[...googleReviews,...localReviews, newRev]
-     //console.log(reviews.current)
-  }
+ const addNewReview = (newRev) =>{
+   setLocalReviews([...localReviews,newRev])
+   reviews.current =[...googleReviews,...localReviews, newRev]
+   //console.log(reviews.current)
+   }
+
  
   const info= props.restaurants;
 
@@ -62,7 +49,6 @@ export default function RestDetails(props){
     <div>
        <div
          className="d-flex align-items-center justify-content-center"
-         style={{height: "2vh", float:'right'}}
         >
        <Button variant="primary" size="sm" onClick={handleShow}>More Info</Button>
        </div>
