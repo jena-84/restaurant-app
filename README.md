@@ -1,5 +1,8 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+ Node.js latest version is not support Yarn 
+ Flollow the stes to update Yarn 
+ https://yarnpkg.com/getting-started/migration#step-by-step
+ 
 ## Available Scripts
 
 In the project directory, you can run:
